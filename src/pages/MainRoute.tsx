@@ -1,5 +1,5 @@
 import { DashboardLayout } from "@layouts";
-import { Home } from "@pages";
+import Home from "@pages/home/Home";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 

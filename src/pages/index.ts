@@ -1,1 +1,1 @@
-export { default as Home } from "./MainRoute";
+export { default as MainRoute } from "./MainRoute";
