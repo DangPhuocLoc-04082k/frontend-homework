@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       colors: {
         white: '#fff',
-        gray: '#667386',
+        gray: '#f3f3fb',
         gray2: '#eeeeee;',
         gray3: '#D3D7DB',
         gray4: '#D9D9D9',
@@ -24,6 +24,7 @@ module.exports = {
         black2: '#636369',
         black3: '#0F0F0F',
         black4: '#04004D',
+        primary: "#00127f"
       },
       boxShadow: {
         shadow1: '0px 7px 64px rgba(0, 0, 0, 0.07)',

@@ -1,0 +1,22 @@
+.nav_item {
+    &:hover {
+        background-color: #112e6f;
+        color: #fff;
+        .title {
+            color: #fff;
+        }
+    }
+}
+.active_nav {
+    .title {
+        color: #fff;
+    }
+}
+
+.sub_item_active {
+    max-height: auto;
+}
+
+.sub_item {
+    max-height: 0;
+}

@@ -21,10 +21,10 @@ module.exports = {
         open: true,
         hot: true,
         static: {
-            directory: path.join(process.cwd(), './public'),
+            directory: path.join(__dirname, 'public'),
         },
         compress: true,
-        historyApiFallback: true,
+        historyApiFallback: true
     },
     optimization: {
         splitChunks: {

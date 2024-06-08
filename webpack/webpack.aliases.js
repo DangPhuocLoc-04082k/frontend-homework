@@ -16,7 +16,9 @@ module.exports = createWebpackAliases({
   '@pages': 'src/pages',
   '@assets': 'src/assets',
   '@layouts': 'src/layouts',
+  '@zustand': 'src/zustand',
   '@utils': 'src/utils',
   '@hooks': 'src/hooks',
+  '@constants': 'src/constants',
   '@enums': 'src/enums',
 });

@@ -1,14 +1,26 @@
 import { DashboardLayout } from "@layouts";
 import Home from "@pages/home/Home";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import InvoicesCreate from "./invoices-create/InvoicesCreate";
+import InvoicesEdit from "./invoices-edit/InvoicesEdit";
+import Contractors from "./contractors/Contractors";
+import Invoices from "./invoices/Invoices";
+import ContractorsCreate from "./contractors-create/ContractorsCreate";
+import ContractorsEdit from "./contractors-edit/ContractorsEdit";
 
 const MainRoute: React.FC = ({}) => {
   return (
     <>
       <Routes>
-        <Route path="/*" element={<DashboardLayout />}>
-          <Route index element={<Home />} />
+        <Route element={<DashboardLayout />}>
+          <Route index path="/" element={<Home />} />
+          <Route path="/invoices" element={<Invoices />} />
+          <Route path="/invoices/create" element={<InvoicesCreate />} />
+          <Route path="/invoices/edit" element={<InvoicesEdit />} />
+          <Route path="/contractors" element={<Contractors />} />
+          <Route path="/contractors/create" element={<ContractorsCreate />} />
+          <Route path="/contractors/edit" element={<ContractorsEdit />} />
         </Route>
       </Routes>
     </>
