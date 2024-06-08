@@ -2,14 +2,23 @@ import { FormDatePicker, FormInput } from "@components/atoms";
 import FormSelect from "@components/atoms/form-select/FormSelect";
 import useInvoices from "@hooks/useInvoices";
 import { Button, Typography } from "antd";
+import dayjs from "dayjs";
 import React from "react";
 import { FormProvider } from "react-hook-form";
 import { FaFileInvoiceDollar, FaMoneyBillWave } from "react-icons/fa6";
 
-interface CreateInvoiceFormProps {}
+interface CreateInvoiceFormProps {
+  currentInvoice?: any;
+}
 
-const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
-  const { methods, handleAddInvoice, formData } = useInvoices({});
+const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({
+  currentInvoice,
+}) => {
+  console.log("🚀 ~ currentInvoice:", currentInvoice);
+  const { methods, handleAddInvoice, formData, handleUpdateInvoice } =
+    useInvoices({
+      currentInvoice,
+    });
 
   return (
     <div className="bg-white rounded-lg p-3 mb-4">
@@ -20,13 +29,17 @@ const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
               <FormInput name="document_number" placeHolder="Document number" />
             </div>
             <div className="col-span-1">
+              <FormInput name="bill_to" placeHolder="Bill to" />
+            </div>
+            <div className="col-span-1">
               <FormSelect
                 name="document_type"
                 placeHolder="Document type"
+                defaultValue={formData.document_type}
                 options={[
                   {
-                    label: "asdasd",
-                    value: "valuieasdasd",
+                    label: "type1",
+                    value: "Type 1",
                   },
                 ]}
               />
@@ -34,6 +47,7 @@ const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
             <div className="col-span-1">
               <FormSelect
                 name="prepared"
+                defaultValue={formData.prepared}
                 placeHolder="Prepared"
                 options={[
                   {
@@ -47,6 +61,7 @@ const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
               <FormSelect
                 name="contractor"
                 placeHolder="Contractor"
+                defaultValue={formData.contractor}
                 options={[
                   { value: "happy_pets", label: "Happy pets LTD" },
                   { value: "it_solutions", label: "IT Solutions LTD" },
@@ -57,6 +72,7 @@ const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
             <div className="col-span-1">
               <FormSelect
                 name="format"
+                defaultValue={formData.format}
                 placeHolder="Format"
                 options={[
                   {
@@ -69,6 +85,7 @@ const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
             <div className="col-span-1">
               <FormSelect
                 name="bank_account"
+                defaultValue={formData.bank_account}
                 placeHolder="Bank account"
                 options={[
                   {
@@ -79,14 +96,23 @@ const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
               />
             </div>
             <div className="col-span-1">
-              <FormDatePicker name="invoice_date" placeHolder="Invoice date" />
+              <FormDatePicker
+                defaultValue={dayjs(formData.invoice_date)}
+                name="invoice_date"
+                placeHolder="Invoice date"
+              />
             </div>
             <div className="col-span-1">
-              <FormDatePicker name="due_date" placeHolder="Due date" />
+              <FormDatePicker
+                defaultValue={dayjs(formData.due_date)}
+                name="due_date"
+                placeHolder="Due date"
+              />
             </div>
             <div className="col-span-1">
               <FormSelect
                 name="payment"
+                defaultValue={formData.payment}
                 placeHolder="Payment"
                 options={[
                   {
@@ -127,6 +153,10 @@ const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
             <div className="flex items-center gap-3">
               <Button
                 onClick={() => {
+                  if (currentInvoice) {
+                    methods.handleSubmit(handleUpdateInvoice)();
+                    return;
+                  }
                   methods.handleSubmit(handleAddInvoice)();
                 }}
                 style={{
@@ -135,7 +165,7 @@ const CreateInvoiceForm: React.FC<CreateInvoiceFormProps> = ({}) => {
                   color: "#fff",
                 }}
               >
-                Save
+                {currentInvoice ? "Update" : "Save"}
               </Button>
               <Button>Save as draft</Button>
               <Button type="text">Cancel</Button>

@@ -6,11 +6,13 @@ import { useFormContext } from "react-hook-form";
 interface FormDatePickerProps {
   name: string;
   placeHolder?: string;
+  defaultValue?: any;
 }
 
 const FormDatePicker: React.FC<FormDatePickerProps> = ({
   name,
   placeHolder,
+  defaultValue,
 }) => {
   const { setValue } = useFormContext();
 
@@ -18,6 +20,7 @@ const FormDatePicker: React.FC<FormDatePickerProps> = ({
     <div>
       <DatePicker
         placeholder={placeHolder}
+        defaultValue={defaultValue}
         variant="borderless"
         className="w-full bg-gray"
         format="YYYY-MM-DD"

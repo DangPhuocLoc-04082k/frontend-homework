@@ -26,6 +26,18 @@ const StatusTag: React.FC<StatusTagProps> = ({ status }) => {
             Paid
           </div>
         );
+      case InvoiceStatus.LATE:
+        return (
+          <div className="bg-[#fff5c6] px-3 py-1 rounded-md font-medium flex items-center justify-center text-primary">
+            Late
+          </div>
+        );
+      case InvoiceStatus.OUTSTANDING:
+        return (
+          <div className="bg-[#938bff] px-3 py-1 rounded-md font-medium flex items-center justify-center text-primary">
+            Outstanding
+          </div>
+        );
 
       default:
         return null;

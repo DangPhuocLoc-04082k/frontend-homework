@@ -6,7 +6,7 @@ const Invoices: React.FC = ({}) => {
   const [filter, setFilter] = useState<IFilter>({
     type: "",
     contractors: "all",
-    vat: false,
+    vat: null,
     from: "",
     to: "",
     status: null,

@@ -13,7 +13,7 @@ export interface IInvoiceType {
 export interface IFilter {
   type: string;
   contractors: string;
-  vat: boolean;
+  vat: boolean | null;
   from: string;
   to: string;
   status: InvoiceStatus | null;
@@ -99,7 +99,12 @@ const InvoiceToolBar: React.FC<InvoiceToolBarProps> = ({
             color: "#9194bd",
             fontWeight: "bold",
           }}
-          onChange={(value) => {}}
+          onChange={(value) => {
+            setFilter((filter) => ({
+              ...filter,
+              contractors: value,
+            }));
+          }}
           options={[
             { value: "happy_pets", label: "Happy pets LTD" },
             { value: "it_solutions", label: "IT Solutions LTD" },
@@ -116,7 +121,12 @@ const InvoiceToolBar: React.FC<InvoiceToolBarProps> = ({
             color: "#9194bd",
             fontWeight: "bold",
           }}
-          onChange={(value) => {}}
+          onChange={(value) => {
+            setFilter((filter) => ({
+              ...filter,
+              vat: value,
+            }));
+          }}
           options={[
             { value: true, label: "Yes" },
             { value: false, label: "No" },
@@ -125,12 +135,19 @@ const InvoiceToolBar: React.FC<InvoiceToolBarProps> = ({
         <DatePicker
           placeholder="From"
           onChange={(date) => {
-            console.log(date);
+            setFilter((filter) => ({
+              ...filter,
+              from: date.toDate().toLocaleDateString(),
+            }));
           }}
         />
         <DatePicker
           placeholder="To"
           onChange={(date) => {
+            setFilter((filter) => ({
+              ...filter,
+              to: date.toDate().toLocaleDateString(),
+            }));
             console.log(date);
           }}
         />
@@ -144,11 +161,19 @@ const InvoiceToolBar: React.FC<InvoiceToolBarProps> = ({
             color: "#9194bd",
             fontWeight: "bold",
           }}
-          onChange={(value) => {}}
+          onChange={(value) => {
+            console.log("🚀 ~ value:", value);
+            setFilter((filter) => ({
+              ...filter,
+              status: value,
+            }));
+          }}
           options={[
             { value: InvoiceStatus.DRAFTS, label: "Drafts" },
             { value: InvoiceStatus.NOT_PAID, label: "Not paid" },
-            { value: InvoiceStatus.PAID, label: "paid" },
+            { value: InvoiceStatus.PAID, label: "Paid" },
+            { value: InvoiceStatus.LATE, label: "Late" },
+            { value: InvoiceStatus.OUTSTANDING, label: "Outstanding" },
           ]}
         />
       </div>

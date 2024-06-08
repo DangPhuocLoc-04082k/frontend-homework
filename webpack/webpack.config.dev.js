@@ -7,6 +7,9 @@ module.exports = {
     module: {
         rules: require('./webpack.rules'),
     },
+    output: {
+        publicPath: '/',
+    },
     plugins: [...require('./webpack.plugins'), ...require('./webpack.plugins.dev')],
     resolve: {
         extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],

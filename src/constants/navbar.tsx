@@ -3,8 +3,9 @@ import { IoHome } from "react-icons/io5";
 import { FaFileInvoice, FaChartSimple } from "react-icons/fa6";
 import { PiFilePlusBold } from "react-icons/pi";
 import { LuFileEdit } from "react-icons/lu";
-import { FaUsers } from "react-icons/fa";
+import { FaCog, FaUsers } from "react-icons/fa";
 import React from "react";
+import { IoIosInformationCircleOutline } from "react-icons/io";
 
 export interface INavBlock {
   label: string;
@@ -76,12 +77,12 @@ export const NAVBAR: INavBlock[] = [
       },
       {
         title: "Settings",
-        icon: <FaChartSimple />,
+        icon: <FaCog />,
         url: "/settings",
       },
       {
         title: "Help",
-        icon: <FaChartSimple />,
+        icon: <IoIosInformationCircleOutline />,
         url: "/help",
       },
     ],
